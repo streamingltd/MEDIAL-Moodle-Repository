@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="repository/helix_media_lib/db" VERSION="2011100601" COMMENT="XMLDB file for block repository/helix_media_lib"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+ <TABLES>
+      <TABLE NAME="repository_helix_media_lib_c" COMMENT="Stores the category associations for the Helix Meida Library">
+        <FIELDS>
+          <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" ENUM="false" NEXT="repoid"/>
+          <FIELD NAME="repoid" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" ENUM="false" PREVIOUS="id" NEXT="moodlecat"/>
+          <FIELD NAME="moodlecat" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" ENUM="false" PREVIOUS="repoid" NEXT="inherit"/>
+          <FIELD NAME="inherit" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" ENUM="false" PREVIOUS="moodlecat" NEXT="hmlcat"/>
+          <FIELD NAME="hmlcat" TYPE="char" LENGTH="255" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" ENUM="false" PREVIOUS="inherit"/>
+        </FIELDS>
+        <KEYS>
+          <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key for block_pageone_log" NEXT="repoid"/>
+          <KEY NAME="repoid" TYPE="foreign" FIELDS="repoid" REFTABLE="repository_instances" REFFIELDS="id" PREVIOUS="primary" NEXT="moodlecat"/>
+          <KEY NAME="moodlecat" TYPE="foreign" FIELDS="moodlecat" REFTABLE="course_categories" REFFIELDS="id" PREVIOUS="repoid"/>
+        </KEYS>
+      </TABLE>
+ </TABLES>
+</XMLDB>
